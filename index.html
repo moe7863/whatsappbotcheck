@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sufi Circle WhatsApp Group Verification</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f0f2f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full text-center">
+      <h1 class="text-3xl font-extrabold text-gray-800 mb-4">
+        <span class="text-green-500">Sufi Circle WhatsApp</span> Group
+        Verification
+      </h1>
+      <p class="text-gray-600 mb-6">
+        To prevent bots, please complete the human verification below to get the
+        group link.
+      </p>
+
+      <div id="verificationSection">
+        <div class="mb-6">
+          <label
+            for="captchaInput"
+            class="block text-xl font-semibold text-gray-700 mb-3"
+            id="captchaQuestion"
+          >
+            What is 5 + 7?
+          </label>
+          <input
+            type="text"
+            id="captchaInput"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 text-center text-lg transition-all duration-300 ease-in-out"
+            placeholder="Your Answer"
+            aria-label="Enter your captcha answer"
+          />
+        </div>
+        <button
+          id="verifyButton"
+          class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300"
+        >
+          Verify
+        </button>
+        <p id="message" class="mt-4 text-sm text-red-600 font-medium"></p>
+      </div>
+
+      <div
+        id="whatsappLinkSection"
+        class="hidden mt-6 bg-green-50 p-6 rounded-xl border border-green-200"
+      >
+        <p class="text-lg font-semibold text-green-700 mb-4">
+          Verification successful! Click the link below to join the group:
+        </p>
+        <a
+          id="whatsappLink"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300 text-lg no-underline"
+          aria-label="Join WhatsApp Group"
+        >
+          Join WhatsApp Group
+        </a>
+        <p class="text-sm text-gray-500 mt-4">
+          (This link will open in a new tab)
+        </p>
+      </div>
+    </div>
+
+    <script>
+      const WHATSAPP_GROUP_LINK =
+        "https://chat.whatsapp.com/K5kVxaJisma73QIskOkq1n";
+
+      const captchaQuestion = document.getElementById("captchaQuestion");
+      const captchaInput = document.getElementById("captchaInput");
+      const verifyButton = document.getElementById("verifyButton");
+      const messageDisplay = document.getElementById("message");
+      const verificationSection = document.getElementById(
+        "verificationSection"
+      );
+      const whatsappLinkSection = document.getElementById(
+        "whatsappLinkSection"
+      );
+      const whatsappLink = document.getElementById("whatsappLink");
+
+      let num1, num2, correctAnswer;
+
+      function generateCaptcha() {
+        num1 = Math.floor(Math.random() * 10) + 1;
+        num2 = Math.floor(Math.random() * 10) + 1;
+        correctAnswer = num1 + num2;
+        captchaQuestion.textContent = `What is ${num1} + ${num2}?`;
+        captchaInput.value = "";
+        messageDisplay.textContent = "";
+      }
+
+      function handleVerification() {
+        const userAnswer = parseInt(captchaInput.value, 10);
+
+        if (isNaN(userAnswer)) {
+          messageDisplay.textContent = "Please enter a number.";
+          return;
+        }
+
+        if (userAnswer === correctAnswer) {
+          messageDisplay.textContent = "Correct! Redirecting...";
+          messageDisplay.className = "mt-4 text-sm text-green-600 font-medium";
+
+          verificationSection.classList.add("hidden");
+          whatsappLinkSection.classList.remove("hidden");
+          whatsappLink.href =
+            "https://chat.whatsapp.com/K5kVxaJisma73QIskOkq1n";
+
+          setTimeout(() => {
+            window.open(WHATSAPP_GROUP_LINK, "_blank");
+          }, 1500);
+        } else {
+          messageDisplay.textContent = "Incorrect. Please try again.";
+          messageDisplay.className = "mt-4 text-sm text-red-600 font-medium";
+          generateCaptcha();
+        }
+      }
+
+      verifyButton.addEventListener("click", handleVerification);
+      captchaInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          handleVerification();
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", generateCaptcha);
+
+      if (
+        WHATSAPP_GROUP_LINK === "YOUR_WHATSAPP_GROUP_INVITE_LINK_HERE" ||
+        !WHATSAPP_GROUP_LINK
+      ) {
+        console.error(
+          "WARNING: WhatsApp group link not customized! Please edit 'WHATSAPP_GROUP_LINK' in the script."
+        );
+
+        whatsappLink.href = "#error";
+        whatsappLink.textContent = "Link Not Configured!";
+        whatsappLink.classList.add("bg-red-500", "hover:bg-red-600");
+
+        verifyButton.disabled = true;
+        verifyButton.textContent = "Configuration Error";
+        messageDisplay.textContent =
+          "Admin needs to set the WhatsApp group link in the code.";
+        messageDisplay.className = "mt-4 text-sm text-red-700 font-bold";
+      }
+    </script>
+  </body>
+</html>
