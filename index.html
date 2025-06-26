@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sufi Circle WhatsApp Group Verification</title>
+    <title>WhatsApp Group Verification</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       body {
         font-family: "Inter", sans-serif;
         background-color: #f0f2f5;
-        background-image: url("https://upload.wikimedia.org/wikipedia/commons/c/c7/Folios_1b-2a_from_Part_15_of_a_30-part_Qur%E2%80%99an_copied_by_Ya%27qut_al-Musta%27simi_in_Baghdad_1282-1283_AD_%28681_AH%29_%28cropped%29.jpg"); /* REPLACE with your image URL */
-        background-size: cover; /* Ensures the image covers the entire background */
-        background-position: center; /* Centers the image */
-        background-repeat: no-repeat; /* Prevents the image from repeating */
-        background-attachment: fixed; /* Makes the background fixed while scrolling */
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/c/c7/Folios_1b-2a_from_Part_15_of_a_30-part_Qur%E2%80%99an_copied_by_Ya%27qut_al-Musta%27simi_in_Baghdad_1282-1283_AD_%28681_AH%29_%28cropped%29.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -23,18 +23,43 @@
         padding: 20px;
         box-sizing: border-box;
       }
+
+      @keyframes pulse-shadow {
+        0% {
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
+            0 0 0 0 rgba(10, 10, 10, 0.4);
+        }
+        50% {
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15),
+            0 0 0 8px rgba(16, 185, 129, 0);
+        }
+        100% {
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
+            0 0 0 0 rgba(16, 185, 129, 0.4);
+        }
+      }
+
+      .animated-border {
+        animation: pulse-shadow 2.5s infinite ease-in-out;
+      }
     </style>
   </head>
   <body>
-    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full text-center">
-        <h1 class="text-1xl font-extrabold text-gray-800 mb-2"> 
-            Bismillahir Rahmanir Raheem <br> بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
-            <br />
-      <h1 class="text-3xl font-extrabold text-gray-800 mb-4"> 
+    <div
+      class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full text-center border border-gray-200 animated-border"
+    >
+      <div class="mb-2">
+        <div class="text-1xl font-extrabold text-gray-800">
+          Bismillahir Rahmanir Raheem <br />
+          بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+        </div>
+      </div>
+      <h1 class="text-3xl font-extrabold text-gray-800 mb-4">
         Sufi Circle
-        
-        <span class="text-green-500">WhatsApp</span> Group <!-- <br /> -->
-        Anti-Bot Verification
+        <span class="text-green-500">WhatsApp</span> Group
+        <span class="block text-lg font-normal text-gray-600 mt-1"
+          >Anti-Bot Verification</span
+        >
       </h1>
       <p class="text-gray-600 mb-6">
         To prevent bots, please complete the human verification below to get the
@@ -56,11 +81,12 @@
             class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 text-center text-lg transition-all duration-300 ease-in-out"
             placeholder="Your Answer"
             aria-label="Enter your captcha answer"
+            autocomplete="off"
           />
         </div>
         <button
           id="verifyButton"
-          class="w-full bg-gray-700 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300"
+          class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300"
         >
           Verify
         </button>
@@ -122,6 +148,7 @@
 
         if (isNaN(userAnswer)) {
           messageDisplay.textContent = "Please enter a number.";
+          messageDisplay.className = "mt-4 text-sm text-red-600 font-medium";
           return;
         }
 
@@ -131,12 +158,11 @@
 
           verificationSection.classList.add("hidden");
           whatsappLinkSection.classList.remove("hidden");
-          whatsappLink.href =
-            "https://chat.whatsapp.com/K5kVxaJisma73QIskOkq1n";
+          whatsappLink.href = WHATSAPP_GROUP_LINK;
 
           setTimeout(() => {
             window.open(WHATSAPP_GROUP_LINK, "_blank");
-          }, 1500);
+          }, 1500); // 1.5 seconds delay before redirecting
         } else {
           messageDisplay.textContent = "Incorrect. Please try again.";
           messageDisplay.className = "mt-4 text-sm text-red-600 font-medium";
@@ -160,11 +186,9 @@
         console.error(
           "WARNING: WhatsApp group link not customized! Please edit 'WHATSAPP_GROUP_LINK' in the script."
         );
-
         whatsappLink.href = "#error";
         whatsappLink.textContent = "Link Not Configured!";
         whatsappLink.classList.add("bg-red-500", "hover:bg-red-600");
-
         verifyButton.disabled = true;
         verifyButton.textContent = "Configuration Error";
         messageDisplay.textContent =
