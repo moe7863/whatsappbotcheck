@@ -6,7 +6,7 @@
     fmtSel = $("#format-select");
   const updated = $("#updated");
 
-  const res = await fetch("/api/books");
+  const res = await fetch("/api/books?ts=" + Date.now(), { cache: "no-store" });
   if (!res.ok) {
     grid.textContent = "Failed to load books.";
     return;

@@ -1,4 +1,4 @@
-/* Basic header + nav that won't clash with your current page */
+import { SpeedInsights } from "@vercel/speed-insights/next"
 :root {
   --brand: #111827;
 }
