@@ -39,3 +39,13 @@ The site also reflects the serene, traditional aesthetic of Sufi culture — fea
 
 ## 🏗️ Project Structure
 
+sufi-circle/
+├── app/
+│ ├── layout.tsx # Layout and navigation header
+│ ├── page.tsx # Main verification page
+│ └── globals.css # Tailwind styles + custom background
+├── public/
+│ ├── sufi-circle-logo.png
+│ └── whatsapp-logo.png
+├── package.json
+└── next.config.js
