@@ -1,0 +1,23 @@
+/* Tailwind v4 entry */
+@import "tailwindcss";
+
+/* your custom styles can go below */
+:root {
+  --header-h: 64px;
+}
+body {
+  background-color: #f0f2f5;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/c/c7/Folios_1b-2a_from_Part_15_of_a_30-part_Qur%E2%80%99an_copied_by_Ya%27qut_al-Musta%27simi_in_Baghdad_1282-1283_AD_%28681_AH%29_%28cropped%29.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  z-index: 0;
+}
