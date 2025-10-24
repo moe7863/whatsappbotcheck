@@ -1,45 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <header class="site-header">
-      <div class="container">
-        <a class="brand" href="/">Sufi Circle</a>
-        <nav class="site-nav">
-          <a class="active" href="/">Home</a>
-          <a href="/ebooks.html">Ebooks</a>
-        </nav>
-      </div>
-    </header>
-
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/assets/site.css" />
-    <link rel="stylesheet" href="/assets/ebooks.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WhatsApp Group Verification</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Sufi Circle — WhatsApp Group Verification</title>
+    <meta
+      name="description"
+      content="Anti-bot verification for the Sufi Circle WhatsApp community. Answer a simple question to reveal the join link."
+    />
+
+    <!-- Existing styles -->
+    <link rel="stylesheet" href="/assets/site.css" />
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
+      :root {
+        --header-h: 64px;
+        --brand: #111827;
+        --nav: #374151;
+        --nav-hover: #111827;
+        --accent: #10b981;
+        --ring: rgba(16, 185, 129, 0.25);
+      }
+
+      html,
       body {
-        font-family: "Inter", sans-serif;
+        height: 100%;
+      }
+      body {
+        font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", sans-serif;
         background-color: #f0f2f5;
         background-image: url("https://upload.wikimedia.org/wikipedia/commons/c/c7/Folios_1b-2a_from_Part_15_of_a_30-part_Qur%E2%80%99an_copied_by_Ya%27qut_al-Musta%27simi_in_Baghdad_1282-1283_AD_%28681_AH%29_%28cropped%29.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
         margin: 0;
-        padding: 20px;
-        box-sizing: border-box;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.12);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--header-h);
+        z-index: 50;
+        backdrop-filter: saturate(140%) blur(6px);
+        background: rgba(255, 255, 255, 0.78);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .site-header .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 0 16px;
+      }
+      .brand {
+        font-weight: 800;
+        font-size: 1.125rem;
+        color: var(--brand);
+        text-decoration: none;
+        letter-spacing: 0.2px;
+      }
+      .site-nav {
+        display: flex;
+        gap: 8px;
+        margin-left: auto;
+      }
+      .site-nav a {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 10px;
+        color: var(--nav);
+        text-decoration: none;
+        transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+      }
+      .site-nav a:hover {
+        background: rgba(0, 0, 0, 0.05);
+        color: var(--nav-hover);
+        transform: translateY(-1px);
+      }
+      .site-nav a.active {
+        background: #111827;
+        color: #fff;
+        box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.25), 0 0 0 6px var(--ring);
+      }
+
+      .page {
+        min-height: 100%;
+        padding-top: calc(var(--header-h) + 32px);
+        display: grid;
+        place-items: center;
+        padding: 0 16px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .card-hero {
+        position: relative;
       }
 
       @keyframes pulse-shadow {
         0% {
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
-            0 0 0 0 rgba(10, 10, 10, 0.4);
+            0 0 0 0 rgba(16, 185, 129, 0.4);
         }
         50% {
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15),
@@ -50,88 +130,140 @@
             0 0 0 0 rgba(16, 185, 129, 0.4);
         }
       }
-
       .animated-border {
-        animation: pulse-shadow 2.5s infinite ease-in-out;
+        animation: pulse-shadow 2.75s infinite ease-in-out;
+      }
+
+      @media (max-width: 420px) {
+        .site-nav {
+          gap: 4px;
+        }
+        .site-nav a {
+          padding: 8px 10px;
+        }
       }
     </style>
   </head>
+
   <body>
-    <div
-      class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full text-center border border-gray-200 animated-border"
-    >
-      <div class="mb-2">
-        <div class="text-1xl font-extrabold text-gray-800">
-          Bismillahir Rahmanir Raheem <br />
-          بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
-        </div>
-      </div>
-      <h1 class="text-3xl font-extrabold text-gray-800 mb-4">
-        Sufi Circle
-        <span class="text-green-500">WhatsApp</span> Group
-        <span class="block text-lg font-normal text-gray-600 mt-1"
-          >Anti-Bot Verification</span
-        >
-      </h1>
-      <p class="text-gray-600 mb-6">
-        To prevent bots, please complete the human verification below to get the
-        group link.
-      </p>
-
-      <div id="verificationSection">
-        <div class="mb-6">
-          <label
-            for="captchaInput"
-            class="block text-xl font-semibold text-gray-700 mb-3"
-            id="captchaQuestion"
-          >
-            What is 5 + 7?
-          </label>
-          <input
-            type="text"
-            id="captchaInput"
-            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 text-center text-lg transition-all duration-300 ease-in-out"
-            placeholder="Your Answer"
-            aria-label="Enter your captcha answer"
-            autocomplete="off"
-          />
-        </div>
-        <button
-          id="verifyButton"
-          class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300"
-        >
-          Verify
-        </button>
-        <p id="message" class="mt-4 text-sm text-red-600 font-medium"></p>
-      </div>
-
-      <div
-        id="whatsappLinkSection"
-        class="hidden mt-6 bg-green-50 p-6 rounded-xl border border-green-200"
-      >
-        <p class="text-lg font-semibold text-green-700 mb-4">
-          Verification successful! Click the link below to join the group:
-        </p>
+    <!-- Header -->
+    <header class="site-header" role="banner">
+      <div class="container">
         <a
-          id="whatsappLink"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300 text-lg no-underline"
-          aria-label="Join WhatsApp Group"
+          class="brand"
+          href="http://suficircle.moserver.uk/"
+          aria-label="Sufi Circle home"
+          >Sufi Circle</a
         >
-          Join WhatsApp Group
-        </a>
-        <p class="text-sm text-gray-500 mt-4">
-          (This link will open in a new tab)
-        </p>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="./index.html" data-nav="home">Home</a>
+          <a
+            href="https://wiki.projectilm.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-nav="wiki"
+            >Wiki</a
+          >
+        </nav>
       </div>
-    </div>
+    </header>
+
+    <!-- Main -->
+    <main class="page" role="main">
+      <div
+        class="card-hero bg-white p-8 rounded-2xl shadow-xl max-w-md w-full text-center border border-gray-200 animated-border"
+      >
+        <p class="text-xl font-extrabold text-gray-800 mb-2">
+          Bismillahir Rahmanir Raheem <br />
+          <span class="text-gray-700"
+            >بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</span
+          >
+        </p>
+
+        <h1 class="text-3xl font-extrabold text-gray-800 mb-4">
+          Sufi Circle <span class="text-emerald-500">WhatsApp</span> Group
+          <span class="block text-lg font-normal text-gray-600 mt-1">
+            Anti-Bot Verification
+          </span>
+        </h1>
+
+        <p class="text-gray-600 mb-6">
+          To prevent bots, please complete the human verification below to get
+          the group link.
+        </p>
+
+        <!-- Verification -->
+        <section id="verificationSection" aria-labelledby="captchaQuestion">
+          <div class="mb-6">
+            <label
+              for="captchaInput"
+              id="captchaQuestion"
+              class="block text-xl font-semibold text-gray-700 mb-3"
+            >
+              What is 5 + 7?
+            </label>
+            <input
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              id="captchaInput"
+              class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 text-center text-lg transition-all duration-300 ease-in-out"
+              placeholder="Your Answer"
+              autocomplete="off"
+            />
+          </div>
+
+          <button
+            id="verifyButton"
+            class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-emerald-300"
+          >
+            Verify
+          </button>
+          <p id="message" class="mt-4 text-sm font-medium"></p>
+        </section>
+
+        <!-- WhatsApp link revealed on success -->
+        <section
+          id="whatsappLinkSection"
+          class="hidden mt-6 bg-emerald-50 p-6 rounded-xl border border-emerald-200"
+        >
+          <p class="text-lg font-semibold text-emerald-700 mb-4">
+            Verification successful! Click the link below to join the group:
+          </p>
+          <a
+            id="whatsappLink"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-emerald-300 text-lg no-underline"
+          >
+            Join WhatsApp Group
+          </a>
+          <p class="text-sm text-gray-500 mt-4">
+            (This link opens in a new tab)
+          </p>
+        </section>
+      </div>
+    </main>
 
     <script>
+      /* Highlight correct nav tab */
+      (() => {
+        const path = location.pathname.replace(/\/+$/, "");
+        const setActive = (name) => {
+          document
+            .querySelectorAll(".site-nav a")
+            .forEach((a) =>
+              a.classList.toggle("active", a.dataset.nav === name)
+            );
+        };
+        if (path.endsWith("index.html") || path === "/" || path === "")
+          setActive("home");
+      })();
+
+      /* Verification logic */
       const WHATSAPP_GROUP_LINK =
         "https://chat.whatsapp.com/K5kVxaJisma73QIskOkq1n";
-
       const captchaQuestion = document.getElementById("captchaQuestion");
       const captchaInput = document.getElementById("captchaInput");
       const verifyButton = document.getElementById("verifyButton");
@@ -143,7 +275,6 @@
         "whatsappLinkSection"
       );
       const whatsappLink = document.getElementById("whatsappLink");
-
       let num1, num2, correctAnswer;
 
       function generateCaptcha() {
@@ -157,24 +288,19 @@
 
       function handleVerification() {
         const userAnswer = parseInt(captchaInput.value, 10);
-
         if (isNaN(userAnswer)) {
           messageDisplay.textContent = "Please enter a number.";
           messageDisplay.className = "mt-4 text-sm text-red-600 font-medium";
           return;
         }
-
         if (userAnswer === correctAnswer) {
-          messageDisplay.textContent = "Correct! Redirecting...";
-          messageDisplay.className = "mt-4 text-sm text-green-600 font-medium";
-
+          messageDisplay.textContent = "Correct! Link unlocked below.";
+          messageDisplay.className =
+            "mt-4 text-sm text-emerald-600 font-medium";
           verificationSection.classList.add("hidden");
           whatsappLinkSection.classList.remove("hidden");
           whatsappLink.href = WHATSAPP_GROUP_LINK;
-
-          setTimeout(() => {
-            window.open(WHATSAPP_GROUP_LINK, "_blank");
-          }, 1500); // 1.5 seconds delay before redirecting
+          window.open(WHATSAPP_GROUP_LINK, "_blank", "noopener");
         } else {
           messageDisplay.textContent = "Incorrect. Please try again.";
           messageDisplay.className = "mt-4 text-sm text-red-600 font-medium";
@@ -183,30 +309,10 @@
       }
 
       verifyButton.addEventListener("click", handleVerification);
-      captchaInput.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-          handleVerification();
-        }
+      captchaInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") handleVerification();
       });
-
       document.addEventListener("DOMContentLoaded", generateCaptcha);
-
-      if (
-        WHATSAPP_GROUP_LINK === "YOUR_WHATSAPP_GROUP_INVITE_LINK_HERE" ||
-        !WHATSAPP_GROUP_LINK
-      ) {
-        console.error(
-          "WARNING: WhatsApp group link not customized! Please edit 'WHATSAPP_GROUP_LINK' in the script."
-        );
-        whatsappLink.href = "#error";
-        whatsappLink.textContent = "Link Not Configured!";
-        whatsappLink.classList.add("bg-red-500", "hover:bg-red-600");
-        verifyButton.disabled = true;
-        verifyButton.textContent = "Configuration Error";
-        messageDisplay.textContent =
-          "Admin needs to set the WhatsApp group link in the code.";
-        messageDisplay.className = "mt-4 text-sm text-red-700 font-bold";
-      }
     </script>
   </body>
 </html>

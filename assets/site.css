@@ -1,5 +1,131 @@
-import { SpeedInsights } from "@vercel/speed-insights/next"
+/* ===== Global layout ===== */
 :root {
+  --header-h: 64px;
+  --brand: #111827; /* slate-900 */
+  --nav: #374151; /* slate-700 */
+  --nav-hover: #111827; /* slate-900 */
+  --accent: #10b981; /* emerald-500 */
+  --ring: rgba(16, 185, 129, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+  background-color: #f0f2f5;
+  /* background image stays in your inline <style>, this just ensures readability layer below */
+}
+
+/* A subtle dark overlay so white panel pops on the manuscript bg */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== Header (shared) ===== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+  z-index: 50;
+  backdrop-filter: saturate(140%) blur(6px);
+  background: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.site-header .container {
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 16px;
+}
+
+.brand {
+  font-weight: 800;
+  font-size: 1.125rem;
+  color: var(--brand);
+  text-decoration: none;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.site-nav {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.site-nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: var(--nav);
+  text-decoration: none;
+  line-height: 1;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.site-nav a:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--nav-hover);
+  transform: translateY(-1px);
+}
+
+/* Active pill */
+.site-nav a.active {
+  background: #111827;
+  color: #fff;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.25), 0 0 0 6px var(--ring);
+}
+
+/* ===== Page content wrapper ===== */
+.page {
+  min-height: 100%;
+  padding-top: calc(var(--header-h) + 32px); /* avoid header overlap */
+  display: grid;
+  place-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* ===== Card polish (your existing Tailwind classes still apply) ===== */
+.card-hero {
+  position: relative;
+  z-index: 1; /* above the overlay */
+}
+
+/* On very small screens, make sure the card breathes */
+@media (max-width: 420px) {
+  .site-nav {
+    gap: 4px;
+  }
+  .site-nav a {
+    padding: 8px 10px;
+  }
+}
+
+/* :root {
   --brand: #111827;
 }
 body {
@@ -36,4 +162,4 @@ body {
 .site-nav a.active {
   background: #111827;
   color: #fff;
-}
+} */
