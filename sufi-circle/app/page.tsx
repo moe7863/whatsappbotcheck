@@ -49,7 +49,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full text-center border border-gray-200">
+    <div className="bg-white/50 backdrop-blur-md p-8 rounded-2xl shadow-xl max-w-md w-full text-center border border-white/30">
       <p className="text-xl font-extrabold text-gray-800 mb-2">
         Bismillahir Rahmanir Raheem <br />
         <span className="text-gray-700">
@@ -57,9 +57,17 @@ export default function HomePage() {
         </span>
       </p>
 
-      <h1 className="text-3xl font-extrabold text-gray-800 mb-4">
-        Sufi Circle <span className="text-emerald-500">WhatsApp</span> Group
-        <span className="block text-lg font-normal text-gray-600 mt-1">
+      <h1 className="text-3xl font-extrabold text-gray-800 mb-4 flex flex-wrap items-center justify-center gap-2 text-center">
+        <span>Sufi Circle</span>
+        <span className="inline-flex items-center gap-2 text-[#0f5132]">
+          <img
+            src="/whatsapp-logo.png"
+            alt="WhatsApp Logo"
+            className="w-6 h-6 object-contain"
+          />
+          WhatsApp Group
+        </span>
+        <span className="block w-full text-lg font-normal text-gray-600 mt-1">
           Anti-Bot Verification
         </span>
       </h1>
@@ -93,7 +101,7 @@ export default function HomePage() {
 
           <button
             onClick={verify}
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all"
+            className="w-full bg-[#0f5132] hover:bg-[#0c3f27] text-white font-semibold py-3 px-4 rounded-xl shadow-lg transition-all focus:outline-none focus:ring-4 focus:ring-[#c2a43b]/40 hover:shadow-[0_0_20px_rgba(194,164,59,0.4)]"
           >
             Verify
           </button>
@@ -101,7 +109,7 @@ export default function HomePage() {
           {message && (
             <p
               className={`mt-4 text-sm font-medium ${
-                message.ok ? "text-emerald-600" : "text-red-600"
+                message.ok ? "text-[#0f5132]" : "text-red-600"
               }`}
             >
               {message.text}
@@ -115,15 +123,20 @@ export default function HomePage() {
           className="mt-6 bg-emerald-50 p-6 rounded-xl border border-emerald-200"
           aria-live="polite"
         >
-          <p className="text-lg font-semibold text-emerald-700 mb-4">
+          <p className="text-lg font-semibold text-[#0f5132] mb-4 border-l-4 border-[#c2a43b] pl-3">
             Verification successful! Click the link below to join the group:
           </p>
           <a
             href={WHATSAPP_GROUP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg"
+            className="inline-flex items-center justify-center gap-2 bg-[#0f5132] hover:bg-[#0c3f27] text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition-all focus:outline-none focus:ring-4 focus:ring-[#c2a43b]/40 hover:shadow-[0_0_20px_rgba(194,164,59,0.4)]"
           >
+            <img
+              src="/whatsapp-logo.png"
+              alt="WhatsApp Logo"
+              className="w-5 h-5 object-contain"
+            />
             Join WhatsApp Group
           </a>
           <p className="text-sm text-gray-500 mt-4">
