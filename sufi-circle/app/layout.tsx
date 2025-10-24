@@ -18,16 +18,21 @@ export default function RootLayout({
         {/* Header */}
         <header
           className="fixed inset-x-0 top-0 z-50 h-[64px] border-b border-black/5
-                     bg-white/80 backdrop-blur-md"
+                     bg-white/50 backdrop-blur-md"
           role="banner"
         >
           <div className="max-w-[1100px] mx-auto h-full flex items-center gap-4 px-4">
             <a
-              className="font-extrabold text-slate-900"
               href="http://suficircle.moserver.uk/"
+              className="flex items-center gap-2 font-extrabold text-slate-900"
               aria-label="Sufi Circle home"
             >
-              Sufi Circle
+              <img
+                src="/sufi-circle-logo.png"
+                alt="Sufi Circle Logo"
+                className="w-8 h-8 object-contain rounded-full"
+              />
+              <span>Sufi Circle</span>
             </a>
             <nav className="ml-auto flex gap-2" aria-label="Primary">
               <a
